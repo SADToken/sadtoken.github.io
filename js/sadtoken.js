@@ -58,7 +58,7 @@ function updatePage(stats) {
     if (stats.totalContributionUSD.toNumber() <= 0) {
         $("#total-usd-message").text("No Ether yet, so no cash either.");
     } else if (stats.totalContributionTVs.toNumber() < 1) {
-        $("#total-usd-message").text("Not enough to pay back depts yet but that's a start");
+        $("#total-usd-message").text("Not enough to pay back debts yet but that's a start");
     }else if (stats.totalContributionTVs.toNumber() < 2) {
         $("#total-usd-message").text("Enough to pay something back.");
     } else {
