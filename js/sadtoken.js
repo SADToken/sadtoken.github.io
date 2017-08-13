@@ -14,7 +14,7 @@ function decodeStats(response, price) {
     return {
         totalContribution: totalContributionExact.round(3, BigNumber.ROUND_DOWN),
         totalContributionUSD: totalContributionUSDExact.round(0, BigNumber.ROUND_DOWN),
-        totalContributionTVs: totalContributionUSDExact.div(new BigNumber("1200")).round(0, BigNumber.ROUND_DOWN),
+        totalContributionTVs: totalContributionUSDExact.div(new BigNumber("500")).round(0, BigNumber.ROUND_DOWN),
         totalSupply: new BigNumber(result.substr(66, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
         totalBonusTokensIssued: new BigNumber(result.substr(130, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
         purchasingAllowed: new BigNumber(result.substr(194, 64), 16).isZero() == false
@@ -49,7 +49,7 @@ function updatePage(stats) {
 
     $("#total-ether").text(stats.totalContribution.toFixed(3));
     if (stats.totalContribution.toNumber() <= 0) {
-        $("#total-ether-message").text("Looks like noone like to share happines :C.");
+        $("#total-ether-message").text("Looks like noone is willing to help :C.");
     } else {
         $("#total-ether-message").text("Yay! Looks like someone is not indifferent!");
     }
@@ -58,11 +58,11 @@ function updatePage(stats) {
     if (stats.totalContributionUSD.toNumber() <= 0) {
         $("#total-usd-message").text("No Ether yet, so no cash either.");
     } else if (stats.totalContributionTVs.toNumber() < 1) {
-        $("#total-usd-message").text("Not enough to pay back debts yet but that's a start");
+        $("#total-usd-message").text("Not enough to do anything yet but that's a start");
     }else if (stats.totalContributionTVs.toNumber() < 2) {
-        $("#total-usd-message").text("Enough to pay something back.");
+        $("#total-usd-message").text("Enough for 1 month of focus.");
     } else {
-        $("#total-usd-message").text("Enough to pay " + stats.totalContributionTVs.toFixed(0) + " months of dorm!");
+        $("#total-usd-message").text("Enough to focus " + stats.totalContributionTVs.toFixed(0) + " months!");
     }
 
     $("#total-tokens").text(stats.totalSupply.toFixed(3));
